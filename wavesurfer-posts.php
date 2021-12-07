@@ -18,6 +18,12 @@ if(!defined('ABSPATH')) {
     exit;
 }
 
+// Allow uploading files
+function update_edit_form() {
+    echo ' enctype="multipart/form-data"';
+}
+add_action('post_edit_form_tag', 'update_edit_form');
+
 if(!class_exists('WS_Posts')) {
     class WS_Posts {
         function __construct() {
