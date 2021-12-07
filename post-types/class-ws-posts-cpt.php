@@ -73,12 +73,14 @@ if(!class_exists('WS_Post_Type')) {
             // end security verification
 
             if (isset($_POST['action']) && $_POST['action'] == 'editpost') {
-
-                $old_info_text = get_post_meta( $post_id, 'ws_post_audio_info', true );
+                $old_info_text = get_post_meta($post_id, 'ws_post_audio_info', true);
                 $new_info_text = $_POST['ws_post_audio_info'];
+                $old_file_url = get_post_meta($post_id, 'ws_post_audio_file', true);
+                $old_file_name = get_post_meta($post_id, 'ws_post_audio_name', true);
+                $old_related_product = get_post_meta($post_id, 'ws_post_audio_product', true);
+                $new_related_product = $_POST['ws_post_audio_product'];        
 
                 if (!empty($_FILES['ws_post_audio_file']['name'])) {
-
                     $supported_types = array('audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg', 'audio/x-mpeg-3');
                     $arr_file_type = wp_check_filetype(basename($_FILES['ws_post_audio_file']['name']));
                     $uploaded_type = $arr_file_type['type'];
@@ -88,16 +90,26 @@ if(!class_exists('WS_Post_Type')) {
                         if ( ! function_exists( 'wp_handle_upload' ) ) {
                             require_once( ABSPATH . 'wp-admin/includes/file.php' );
                         }
+
                         $upload_overrides = array( 'test_form' => false );
                         $upload = wp_handle_upload($_FILES['ws_post_audio_file'], $upload_overrides);
 
                         if (isset($upload['error']) && $upload['error'] != 0) {
                             wp_die('There was an error uploading your file. The error is: ' . $upload['error']);
                         } else {
-                            update_post_meta($post_id, 'ws_post_audio_file', $upload['url']);
-                            update_post_meta($post_id, 'ws_post_audio_name', basename($upload['file']));
+
+                            if (empty($old_file_url)) {
+                                update_post_meta($post_id, 'ws_post_audio_file', $upload['url']);
+                            } else {
+                                update_post_meta($post_id, 'ws_post_audio_file', $upload['url'], $old_file_url);
+                            }
+
+                            if (empty($old_file_name)) {
+                                update_post_meta($post_id, 'ws_post_audio_name', basename($upload['file']));
+                            } else {
+                                update_post_meta($post_id, 'ws_post_audio_name', basename($upload['file'], $old_file_name));
+                            }
                         }
-             
                     } else {
                         wp_die("The file type that you've uploaded is not .mp3");
                     }
@@ -107,6 +119,12 @@ if(!class_exists('WS_Post_Type')) {
                     update_post_meta($post_id, 'ws_post_audio_info', 'Add some text');
                 } else {
                     update_post_meta($post_id, 'ws_post_audio_info', sanitize_text_field($new_info_text), $old_info_text);
+                }
+
+                if (empty($old_related_product)) {
+                    update_post_meta($post_id, 'ws_post_audio_product', sanitize_text_field($new_related_product));
+                } else {
+                    update_post_meta($post_id, 'ws_post_audio_product', sanitize_text_field($new_related_product), $old_related_product);
                 }
                 
             }
