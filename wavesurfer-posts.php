@@ -22,6 +22,9 @@ if(!class_exists('WS_Posts')) {
     class WS_Posts {
         function __construct() {
             $this->define_constants();
+
+            require_once( WS_POSTS_PATH . 'post-types/class-ws-posts-cpt.php' );
+            $WS_Post_Type = new WS_Post_Type();
         }
 
         public function define_constants() {
