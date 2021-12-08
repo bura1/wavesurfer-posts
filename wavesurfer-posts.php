@@ -29,6 +29,8 @@ if(!class_exists('WS_Posts')) {
         function __construct() {
             $this->define_constants();
 
+            add_action('admin_menu', array($this, 'add_menu'));
+
             require_once( WS_POSTS_PATH . 'post-types/class-ws-posts-cpt.php' );
             $WS_Post_Type = new WS_Post_Type();
         }
@@ -50,6 +52,41 @@ if(!class_exists('WS_Posts')) {
 
         public static function uninstall() {
 
+        }
+
+        public function add_menu() {
+            add_menu_page(
+                'Wavesurfer Options',
+                'Wavesurfer Options',
+                'manage_options',
+                'wavesurfer_admin',
+                array($this, 'wavesurfer_settings_page'),
+                'dashicons-format-audio'
+            );
+
+            add_submenu_page(
+                'wavesurfer_admin',
+                'Wavesurfer Posts',
+                'Wavesurfer Posts',
+                'manage_options',
+                'edit.php?post_type=wavesurfer-posts',
+                null,
+                null
+            );
+
+            add_submenu_page(
+                'wavesurfer_admin',
+                'Add New Post',
+                'Add New Post',
+                'manage_options',
+                'post-new.php?post_type=wavesurfer-posts',
+                null,
+                null
+            );
+        }
+
+        public function wavesurfer_settings_page() {
+            echo 'test admin page';
         }
     }
 }
