@@ -31,8 +31,11 @@ if(!class_exists('WS_Posts')) {
 
             add_action('admin_menu', array($this, 'add_menu'));
 
-            require_once( WS_POSTS_PATH . 'post-types/class-ws-posts-cpt.php' );
+            require_once(WS_POSTS_PATH . 'post-types/class-ws-posts-cpt.php');
             $WS_Post_Type = new WS_Post_Type();
+
+            require_once(WS_POSTS_PATH . 'class-ws-posts-settings.php');
+            $WS_Posts_Settings = new WS_Posts_Settings();
         }
 
         public function define_constants() {
@@ -86,7 +89,7 @@ if(!class_exists('WS_Posts')) {
         }
 
         public function wavesurfer_settings_page() {
-            echo 'test admin page';
+            require(WS_POSTS_PATH . 'views/settings-page.php');
         }
     }
 }
