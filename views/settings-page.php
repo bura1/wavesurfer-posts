@@ -4,6 +4,7 @@
         <?php
             settings_fields('ws_posts_group');
             do_settings_sections('ws_posts_page1');
+            do_settings_sections('ws_posts_page2');
             submit_button('Save');
         ?>
     </form>
