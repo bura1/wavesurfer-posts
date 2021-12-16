@@ -64,15 +64,30 @@ if(!class_exists('WS_Posts_Settings')) {
         <?php }
 
         public function ws_posts_wave_color_callback() { ?>
-            <input id="color_code_wave" class="color-picker" name="color_code_wave" type="text" value="" /> 
+            <input 
+            id="ws_posts_wave_color" 
+            class="color-picker" 
+            name="ws_posts_options[ws_posts_wave_color]" 
+            type="text" 
+            value="<?php echo isset(self::$options['ws_posts_wave_color']) ? esc_attr(self::$options['ws_posts_wave_color']) : '' ?>" /> 
         <?php }
 
         public function ws_posts_progress_color_callback() { ?>
-            <input id="color_code_progress" class="color-picker" name="color_code_progress" type="text" value="" /> 
+            <input 
+            id="ws_posts_progress_color" 
+            class="color-picker" 
+            name="ws_posts_options[ws_posts_progress_color]" 
+            type="text" 
+            value="<?php echo isset(self::$options['ws_posts_progress_color']) ? esc_attr(self::$options['ws_posts_progress_color']) : '' ?>" /> 
         <?php }
 
         public function ws_posts_cursor_color_callback() { ?>
-            <input id="color_code_cursor" class="color-picker" name="color_code_cursor" type="text" value="" /> 
+            <input 
+            id="ws_posts_cursor_color" 
+            class="color-picker" 
+            name="ws_posts_options[ws_posts_cursor_color]" 
+            type="text" 
+            value="<?php echo isset(self::$options['ws_posts_cursor_color']) ? esc_attr(self::$options['ws_posts_cursor_color']) : '' ?>" /> 
         <?php }
     }
 }
