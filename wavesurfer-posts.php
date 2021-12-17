@@ -88,6 +88,10 @@ if(!class_exists('WS_Posts')) {
             if(!current_user_can('manage_options')) {
                 return;
             }
+            if(isset($_GET['settings-updated'])) {
+                add_settings_error('ws_posts_options', 'ws_posts_message', 'Settings saved', 'success');
+            }
+            settings_errors('ws_posts_options');
             require(WS_POSTS_PATH . 'views/settings-page.php');
         }
     }
