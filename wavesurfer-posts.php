@@ -85,6 +85,9 @@ if(!class_exists('WS_Posts')) {
         }
 
         public function wavesurfer_settings_page() {
+            if(!current_user_can('manage_options')) {
+                return;
+            }
             require(WS_POSTS_PATH . 'views/settings-page.php');
         }
     }
