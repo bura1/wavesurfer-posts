@@ -10,7 +10,7 @@ if(!class_exists('WS_Posts_Settings')) {
         }
 
         public function admin_init() {
-            register_setting('ws_posts_group', 'ws_posts_options');
+            register_setting('ws_posts_group', 'ws_posts_options', array($this, 'ws_posts_validate'));
 
             add_settings_section(
                 'ws_posts_main_section',
@@ -89,5 +89,13 @@ if(!class_exists('WS_Posts_Settings')) {
             type="text" 
             value="<?php echo isset(self::$options['ws_posts_cursor_color']) ? esc_attr(self::$options['ws_posts_cursor_color']) : '' ?>" /> 
         <?php }
+
+        public function ws_posts_validate($input) {
+            $new_input = array();
+            foreach($input as $key => $value) {
+                $new_input[$key] = sanitize_text_field($value);
+            }
+            return $new_input;
+        }
     }
 }
