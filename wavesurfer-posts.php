@@ -32,6 +32,9 @@ if(!class_exists('WS_Posts')) {
 
             require_once(WS_POSTS_PATH . 'class-ws-posts-settings.php');
             $WS_Posts_Settings = new WS_Posts_Settings();
+
+            require_once(WS_POSTS_PATH . 'shortcodes/class-ws-posts-shortcode.php');
+            $WS_Posts_Shortcode = new WS_Posts_Shortcode();
         }
 
         public function define_constants() {
