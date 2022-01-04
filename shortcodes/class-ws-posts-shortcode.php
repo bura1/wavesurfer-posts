@@ -18,7 +18,11 @@ if(!class_exists('WS_Posts_Shortcode')) {
                 $tag
             ));
 
-            return $num;
+            ob_start();
+            require(WS_POSTS_PATH . 'views/ws-posts_shortcode.php');
+            wp_enqueue_script('ws-script-jquery');
+            wp_enqueue_script('ws-script-options');
+            return ob_get_clean();
         }
     }
 }
