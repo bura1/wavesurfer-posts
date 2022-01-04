@@ -17,6 +17,8 @@ if(!class_exists('WS_Posts_Shortcode')) {
                 $atts,
                 $tag
             ));
+
+            return $num;
         }
     }
 }
