@@ -1,10 +1,3 @@
-<!--<?php echo WS_Posts_Settings::$options['ws_posts_wave_color']; ?>
-<?php echo WS_Posts_Settings::$options['ws_posts_progress_color']; ?>
-<?php echo WS_Posts_Settings::$options['ws_posts_cursor_color']; ?>
-
-<div id="waveform"></div>
-<button onclick="startStop()">Start</button>-->
-
 <?php
 
 $args = array(  
@@ -30,7 +23,11 @@ if ( $loop->have_posts() ) {
         echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
 
         if (!empty($current_file_url)) {
-            echo '<div id="waveform-' . get_the_ID() . '" file-url="' . $current_file_url . '"></div>';
+            echo '<div id="waveform-' . get_the_ID() . '" 
+                file-url="' . $current_file_url . '"
+                wave-color="' . WS_Posts_Settings::$options['ws_posts_wave_color'] . '"
+                progress-color="' . WS_Posts_Settings::$options['ws_posts_progress_color'] . '"
+                cursor-color="' . WS_Posts_Settings::$options['ws_posts_cursor_color'] . '"></div>';
             echo '<button onClick="playStop(`waveform-' . get_the_ID() . '`)">Play/Stop</button>';
         }
 

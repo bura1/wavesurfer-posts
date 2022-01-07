@@ -4,10 +4,14 @@ var currentPlaying = '';
 
 for (var i = 0; i < wsArchive.length; i++) {
     if (wsArchive[i].id.startsWith("waveform-")) {
+        var ws_post_el = document.getElementById(wsArchive[i].id);
         wsPosts[wsArchive[i].id] = WaveSurfer.create({
-            container: '#' + wsArchive[i].id
+            container: '#' + wsArchive[i].id,
+            waveColor: ws_post_el.getAttribute("wave-color"),
+            progressColor: ws_post_el.getAttribute("progress-color"),
+            cursorColor: ws_post_el.getAttribute("cursor-color")
         });
-        wsPosts[wsArchive[i].id].load(document.getElementById(wsArchive[i].id).getAttribute("file-url"));
+        wsPosts[wsArchive[i].id].load(ws_post_el.getAttribute("file-url"));
     }
 }
 
