@@ -12,7 +12,8 @@ if(!class_exists('WS_Posts_Shortcode')) {
             extract(shortcode_atts(
                 array(
                     'num' => '5',
-                    'orderby' => 'date'
+                    'orderby' => 'date',
+                    'order' => 'DESC'
                 ),
                 $atts,
                 $tag
