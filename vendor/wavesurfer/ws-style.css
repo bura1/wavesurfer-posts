@@ -1,0 +1,7 @@
+.ws_post_row {
+    display: flex;
+}
+
+.ws_post_column {
+    flex: 50%;
+}

@@ -17,5 +17,6 @@ add_action('admin_enqueue_scripts', 'my_admin_scripts');
 function my_custom_scripts() {
     wp_register_script('ws-script-jquery', WS_POSTS_URL . 'vendor/wavesurfer/wavesurfer.js', array('jquery'), false, true);
     wp_register_script('ws-script-options', WS_POSTS_URL . 'vendor/wavesurfer/ws-script.js', array('jquery'), false, true);
+    wp_register_style('ws-style', WS_POSTS_URL . 'vendor/wavesurfer/ws-style.css');
 }
 add_action('wp_enqueue_scripts', 'my_custom_scripts');

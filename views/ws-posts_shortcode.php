@@ -10,7 +10,9 @@ $args = array(
 
 $loop = new WP_Query( $args );
 
-echo '<div id="wavesurfer-posts">';
+$count = 1;
+
+echo '<div class="wavesurfer-posts">';
 
 if ( $loop->have_posts() ) {
     while ( $loop->have_posts() ) {
@@ -19,6 +21,10 @@ if ( $loop->have_posts() ) {
         $current_file_url = get_post_meta(get_the_ID(), 'ws_post_audio_file', true);
         $current_info = get_post_meta(get_the_ID(), 'ws_post_audio_info', true);
         $current_product_id = get_post_meta(get_the_ID(), 'ws_post_audio_product', true);
+
+        if ($count % 2 != 0) { echo '<div class="ws_post_row">';}
+
+        echo '<div class="ws_post_column">';
 
         echo '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>';
 
@@ -31,7 +37,11 @@ if ( $loop->have_posts() ) {
             echo '<button onClick="playStop(`waveform-' . get_the_ID() . '`)">Play/Stop</button>';
         }
 
-        echo "<br><br>";
+        echo "</div>";
+
+        if ($count % 2 == 0) { echo '</div>';}
+
+        $count++;
     }
 }
 

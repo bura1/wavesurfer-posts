@@ -1,19 +1,21 @@
-var wsArchive = document.getElementById("wavesurfer-posts").children;
+var wsArchive = document.getElementsByClassName("ws_post_column");
 var wsPosts = [];
 var currentPlaying = '';
 
-for (var i = 0; i < wsArchive.length; i++) {
-    if (wsArchive[i].id.startsWith("waveform-")) {
-        var ws_post_el = document.getElementById(wsArchive[i].id);
-        wsPosts[wsArchive[i].id] = WaveSurfer.create({
-            container: '#' + wsArchive[i].id,
-            waveColor: ws_post_el.getAttribute("wave-color"),
-            progressColor: ws_post_el.getAttribute("progress-color"),
-            cursorColor: ws_post_el.getAttribute("cursor-color")
-        });
-        wsPosts[wsArchive[i].id].load(ws_post_el.getAttribute("file-url"));
-    }
-}
+Array.prototype.forEach.call(wsArchive, function(column) {
+    Array.prototype.forEach.call(column.children, function(el) {
+        if (el.id.startsWith("waveform-")) {
+            var ws_post_el = document.getElementById(el.id);
+            wsPosts[el.id] = WaveSurfer.create({
+                container: '#' + el.id,
+                waveColor: ws_post_el.getAttribute("wave-color"),
+                progressColor: ws_post_el.getAttribute("progress-color"),
+                cursorColor: ws_post_el.getAttribute("cursor-color")
+            });
+            wsPosts[el.id].load(ws_post_el.getAttribute("file-url"));
+        }
+    });
+});
 
 function playStop(id) {
     if (currentPlaying == id) {
