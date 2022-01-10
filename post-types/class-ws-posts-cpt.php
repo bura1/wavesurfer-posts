@@ -94,7 +94,7 @@ if(!class_exists('WS_Post_Type')) {
                         $upload_overrides = array( 'test_form' => false );
                         $upload = wp_handle_upload($_FILES['ws_post_audio_file'], $upload_overrides);
 
-                        if (isset($upload['error']) && $upload['error'] != 0) {
+                        if (isset($upload['error']) && $upload['error']) {
                             wp_die('There was an error uploading your file. The error is: ' . $upload['error']);
                         } else {
 
@@ -102,6 +102,7 @@ if(!class_exists('WS_Post_Type')) {
                                 update_post_meta($post_id, 'ws_post_audio_file', $upload['url']);
                             } else {
                                 update_post_meta($post_id, 'ws_post_audio_file', $upload['url'], $old_file_url);
+                    
                             }
 
                             if (empty($old_file_name)) {
