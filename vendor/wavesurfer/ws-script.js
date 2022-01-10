@@ -18,8 +18,9 @@ Array.prototype.forEach.call(wsArchive, function(column) {
 });
 
 function playStop(id) {
-    if (currentPlaying == id) {
+    if (currentPlaying == id && wsPosts[id].isPlaying()) {
         wsPosts[id].pause();
+        currentPlaying = '';
     } else if (currentPlaying != id && currentPlaying != '') {
         wsPosts[currentPlaying].pause();
         wsPosts[id].play();
