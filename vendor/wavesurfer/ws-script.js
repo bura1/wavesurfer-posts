@@ -13,20 +13,32 @@ Array.prototype.forEach.call(wsArchive, function(column) {
                 cursorColor: ws_post_el.getAttribute("cursor-color")
             });
             wsPosts[el.id].load(ws_post_el.getAttribute("file-url"));
+            wsPosts[el.id].on('finish', function () {
+                document.getElementById("wsbtn-" + el.id.substr(9)).className = "wsbtn wsbtn-play";
+            });
         }
     });
 });
 
 function playStop(id) {
-    if (currentPlaying == id && wsPosts[id].isPlaying()) {
-        wsPosts[id].pause();
+    var wsid = "waveform-" + id;
+    var btnid = "wsbtn-" + id;
+    var wsbtn = document.getElementById(btnid);
+    
+    if (currentPlaying == id && wsPosts[wsid].isPlaying()) {
+        wsPosts[wsid].pause();
         currentPlaying = '';
+        wsbtn.className = "wsbtn wsbtn-play";
     } else if (currentPlaying != id && currentPlaying != '') {
-        wsPosts[currentPlaying].pause();
-        wsPosts[id].play();
+        wsPosts["waveform-" + currentPlaying].pause();
+        document.getElementById("wsbtn-" + currentPlaying).className = "wsbtn wsbtn-play";
+
+        wsPosts[wsid].play();
+        wsbtn.className = "wsbtn wsbtn-pause";
         currentPlaying = id;
     } else {
-        wsPosts[id].play();
+        wsPosts[wsid].play();
         currentPlaying = id;
+        wsbtn.className = "wsbtn wsbtn-pause";
     }
 }

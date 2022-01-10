@@ -34,7 +34,7 @@ if ( $loop->have_posts() ) {
                 wave-color="' . WS_Posts_Settings::$options['ws_posts_wave_color'] . '"
                 progress-color="' . WS_Posts_Settings::$options['ws_posts_progress_color'] . '"
                 cursor-color="' . WS_Posts_Settings::$options['ws_posts_cursor_color'] . '"></div>';
-            echo '<button onClick="playStop(`waveform-' . get_the_ID() . '`)">Play/Stop</button>';
+            echo '<button class="wsbtn wsbtn-play" id="wsbtn-' . get_the_ID() . '" onClick="playStop(`' . get_the_ID() . '`)"><span>Play</span></button>';
         }
 
         echo "</div>";

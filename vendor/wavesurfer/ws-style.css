@@ -8,9 +8,9 @@
 
 .show-all-loops {
   border-radius: 3px;
-  background: grey;
+  background: #2e3237;
   color: white;
-  padding: 0.4em 1em;
+  padding: 0.5em 1em;
   border: 0;
   line-height: 1.6;
   display: inline-block;
@@ -19,4 +19,29 @@
   text-decoration: none;
   transition: all 0.2s ease;
   box-shadow: 0px 0px 0px -7px rgb(0 0 0 / 0%);
+}
+
+.wsbtn {
+  padding: 11px 14.4px;
+  background: #2e3237;
+}
+
+.wsbtn span {
+  display: none;
+}
+
+.wsbtn-play::before {
+  content: '';
+  background: url('img/play-solid.svg') no-repeat;
+  width: 12px;
+  height: 15.4px;
+  display: block;
+}
+
+.wsbtn-pause::before {
+  content: '';
+  background: url('img/pause-solid.svg') no-repeat;
+  width: 12px;
+  height: 15.4px;
+  display: block;
 }
