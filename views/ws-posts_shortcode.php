@@ -47,4 +47,9 @@ if ( $loop->have_posts() ) {
 
 wp_reset_postdata();
 
+// check if there are only one column in last row and add </div>
+if ($count % 2 == 0) { echo '</div>';}
+
+echo '<a class="show-all-loops" href="' . get_post_type_archive_link('wavesurfer-posts') . '">Show all free loops</a>';
+
 echo "</div>";
