@@ -35,6 +35,9 @@ if(!class_exists('WS_Posts')) {
 
             require_once(WS_POSTS_PATH . 'shortcodes/class-ws-posts-shortcode.php');
             $WS_Posts_Shortcode = new WS_Posts_Shortcode();
+
+            add_filter('archive_template', array($this, 'load_custom_archive_template'));
+            add_filter('single_template', array($this, 'load_custom_single_template'));
         }
 
         public function define_constants() {
@@ -96,6 +99,20 @@ if(!class_exists('WS_Posts')) {
             }
             settings_errors('ws_posts_options');
             require(WS_POSTS_PATH . 'views/settings-page.php');
+        }
+
+        public function load_custom_archive_template($tpl) {
+            if (is_post_type_archive('wavesurfer-posts')) {
+                $tpl = WS_POSTS_PATH . 'views/templates/archive-wavesurfer-posts.php';
+            }
+            return $tpl;
+        }
+
+        public function load_custom_single_template($tpl) {
+            if (is_singular('wavesurfer-posts')) {
+                $tpl = WS_POSTS_PATH . 'views/templates/single-wavesurfer-posts.php';
+            }
+            return $tpl;
         }
     }
 }
