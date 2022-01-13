@@ -32,7 +32,7 @@
 
 .wsbtn-play::before {
   content: '';
-  background: url('img/play-solid.svg') no-repeat;
+  background: url('../assets/img/play-solid.svg') no-repeat;
   width: 12px;
   height: 15.4px;
   display: block;
@@ -40,7 +40,7 @@
 
 .wsbtn-pause::before {
   content: '';
-  background: url('img/pause-solid.svg') no-repeat;
+  background: url('../assets/img/pause-solid.svg') no-repeat;
   width: 12px;
   height: 15.4px;
   display: block;
