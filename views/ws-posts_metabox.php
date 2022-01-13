@@ -3,7 +3,8 @@
     $current_info = get_post_meta($post->ID, 'ws_post_audio_info', true);
        
     $woocommerce_products = get_posts([
-        'post_type' => 'product'
+        'post_type' => 'product',
+        'numberposts' => -1
     ]);
 
     $current_product_id = get_post_meta($post->ID, 'ws_post_audio_product', true);

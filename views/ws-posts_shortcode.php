@@ -20,7 +20,6 @@ if ( $loop->have_posts() ) {
 
         $current_file_url = get_post_meta(get_the_ID(), 'ws_post_audio_file', true);
         $current_info = get_post_meta(get_the_ID(), 'ws_post_audio_info', true);
-        $current_product_id = get_post_meta(get_the_ID(), 'ws_post_audio_product', true);
 
         if ($count % 2 != 0) { echo '<div class="ws_post_row">';}
 
